@@ -1,0 +1,78 @@
+{% extends "base2.html" %}
+
+{% block content %}
+<style>
+    label {
+        font-size: .875rem;
+        font-weight: 600;
+        color: #525f7f;
+        width: 140px;
+        vertical-align: top;
+        line-height: calc(2.75rem + 2px);
+    }
+    select,
+    textarea,
+    input[type="number"],
+    input[type="text"] {
+        line-height: 1.5;
+        display: inline-block;
+        width: 400px;
+        height: calc(2.75rem + 2px);
+        padding: .625rem .75rem;
+        transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);
+        color: #8898aa;
+        border: 1px solid #cad1d7;
+        border-radius: .375rem;
+        background-color: #fff;
+        background-clip: padding-box;
+        box-shadow: none;
+        transition: box-shadow .15s ease;
+        border: 0;
+        box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
+    }
+    select {
+        margin-bottom: 30px;
+    }
+    textarea {
+        min-height: 100px;
+    }
+
+</style>
+<div class="row">
+    <div class="col">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Estimation de prix</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ msg }}
+                <br><br>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        <label>Marque : </label>
+                        <select name="marque">
+                            {% for marque in marques %}
+                            <option value="{{ marque.0 }}">{{ marque.1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Modele : </label>
+                        <select name="modele">
+                            {% for modele in modeles %}
+                            <option value="{{ modele.0 }}">{{ modele.1 }}</option>
+                            {% endfor %}
+                        </select>
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Estimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+{% endblock %}

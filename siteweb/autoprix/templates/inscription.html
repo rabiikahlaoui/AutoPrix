@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<style>
+    .helptext {
+        display: none;
+    }
+
+    ul {
+        color: red;
+    }
+
+    label {
+        width: 140px;
+    }
+
+    input {
+        width: 250px;
+    }
+
+</style>
+
+
+
+<main>
+    <section class="section section-shaped section-lg">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <h5>Inscription</h5>
+                            </div>
+                            <form method="post" id="form">
+                                <div class="col">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn dento-btn">Inscription</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script>
+    elm = document.getElementById("form").getElementsByTagName("li");
+    uls = document.getElementById("form").getElementsByTagName("ul");
+    if (elm.length == 4) {
+        elm[0].style.display = "none";
+        elm[1].style.display = "none";
+        elm[2].style.display = "none";
+        elm[3].style.display = "none";
+    } else {
+        if (uls.length == 1) {
+            elm[0].style.display = "none";
+            elm[1].style.display = "none";
+            elm[2].style.display = "none";
+            elm[3].style.display = "none";
+        } else {
+            elm[1].style.display = "none";
+            elm[2].style.display = "none";
+            elm[3].style.display = "none";
+            elm[4].style.display = "none";
+        }
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+{% for Annonce in Annonces %}
+
+<div class="card shadow" style="display: inline-block; width: 30%;margin: 10px;">
+    <img class="card-img-top" src="{{ Annonce.image.url }}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ Annonce.titre }}</h5>
+        <h5 class="card-title">{{ Annonce.prix }} DT</h5>
+        <p class="card-text">{{ Annonce.description }}</p>
+        <a href="/Annonce/{{ Annonce.pk }}/" class="btn btn-primary" style="padding: 8px 12px; margin-right: 2px">Details</a>
+        {% if user.username == Annonce.personne %}
+            <a href="/Annonce/modifier/{{ Annonce.pk }}/" class="btn btn-success" style="padding: 8px 12px; margin-right: 2px">Modifier</a>
+            <a href="/Annonce/supprimer/{{ Annonce.pk }}/" class="btn btn-danger" style="padding: 8px 12px; margin-right: 2px">X</a>
+        {% endif %}
+    </div>
+</div>
+{%endfor%}
+
+<br><br>
+{% endblock %}

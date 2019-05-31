@@ -1,0 +1,18 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <h1>Details Annonce</h1>
+      {{ Annonce.titre }}
+      {{ Annonce.description }}
+      {{ Annonce.datePublication }}
+      {{ Annonce.marque }}
+      {{ Annonce.modele }}
+      {{ Annonce.boiteVitesse }}
+      {{ Annonce.puissanceFiscale }}
+      {{ Annonce.energie }}
+      {{ Annonce.kilometrage }}
+      {{ Annonce.prix }}
+    <a href="/Annonce/modifier/{{ Annonce.pk }}/">Modifier</a>
+    <a href="/Annonce/supprimer/{{ Annonce.pk }}/">Supprimer</a>
+
+{% endblock %}
