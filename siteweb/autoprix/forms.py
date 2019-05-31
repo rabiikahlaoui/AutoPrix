@@ -13,10 +13,19 @@ class AnnonceFrm(forms.Form):
   energie = forms.CharField(label='energie', max_length=60, required=True)
   kilometrage = forms.IntegerField(label='kilometrage', required=True)
   prix = forms.FloatField(label='prix', required=True)
-
+     
+ENERGY_CHOICES = (
+    (0, _("essence")),
+    (1, _("diesel"))
+)
+BV_CHOICES = (
+    (0, _("mécanique")),
+    (1, _("automatique")),
+    (2, _("manuelle"))
+)
 class FormPrix(forms.Form):
     kilometrage = forms.IntegerField(required=True)
     annee = forms.IntegerField(required=True)
-    energie = forms.IntegerField(required=True)
-    boite = forms.IntegerField(required=True)
+    energie = forms.ChoiceField(choices = ENERGY_CHOICES, required=True)
+    boite = forms.ChoiceField(choices = BV_CHOICES, required=True)
     puissance = forms.IntegerField(required=True)
